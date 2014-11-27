@@ -22,3 +22,22 @@ task viewLifecycle {
 
 println "This is the end of the 'configuration' phase"
 println '-' * 10
+
+task buildWorld(description: "Build a new world - awesome God-like powers!") {
+  ext.worldName = 'Planeta Moldova'
+
+  doLast{
+    println "Building world ${worldName}!"
+  }
+}
+
+task hello(dependsOn: buildWorld) {
+  description = "Greets the new world!"  
+  doLast {
+    println "Hello world ${buildWorld.worldName}"
+  }
+}
+
+buildWorld {
+  worldName = '67P/Churymov–Gerasimenko'
+}

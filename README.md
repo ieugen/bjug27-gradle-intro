@@ -120,5 +120,31 @@ This is 'execution' phase, first doLast action
 This is 'execution' phase, second doLast actio
 ~~~
 
+Step 3: More about tasks
+------------------------
 
+You can (and will) build lots of tasks, at least you will need to configure them if the defaults do not sattisfy you.
 
+Tasks are Groovy clasess part of the [Gradle API :: Task](http://www.gradle.org/docs/current/dsl/org.gradle.api.Task.html)
+
+You can express dependencies or add properties to your tasks:
+
+~~~
+  task hello(dependsOn: buildWorld) {
+  description = "Greets the new world!"
+  doLast {
+    println "Hello world ${buildWorld.worldName}"
+  }
+}
+~~~
+
+Running the above task with **gradle -q hello**. Notice the execution of the dependant task (full code in build.gradle).
+
+~~~
+This is executed during 'configuration' phase
+This is still 'configuration' phase, inside a Task
+This is the end of the 'configuration' phase
+----------
+Building world 67P/Churymov–Gerasimenko!
+Hello world 67P/Churymov–Gerasimenko
+~~~
