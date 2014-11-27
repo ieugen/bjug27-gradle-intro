@@ -148,3 +148,8 @@ This is the end of the 'configuration' phase
 Building world 67P/Churymov–Gerasimenko!
 Hello world 67P/Churymov–Gerasimenko
 ~~~
+
+
+Step 4: Gradle plugins: the Java plugin
+---------------------------------------
+
