@@ -65,3 +65,60 @@ To see all tasks and more detail, run with --all.
 
 BUILD SUCCESSFUL
 ~~~
+
+Step 2: The Gradle lifecycle
+----------------------------
+
+This step is a big deep dive, but I think it's important on the long run. If you understand this, it will make things much
+more clearer.
+
+Gradle, inspired by Maven has a lifecycle, but unlike Maven, it has a very simple and generic lifecycle.
+It has three phases: Initialization, Configuratiion and Execution. When you run **gradle myTask** command for instance,
+gradle will do the following:
+
+* Initialization
+  - identifies project to build
+  - creates Project instance
+* Configuration
+  - executes buildscript{} for all its scope
+  - configures the project objects
+* Execution
+  - creates the Task DAG
+  - runs the build
+
+>A more detailed description of the process is depicted bellow:
+>
+>During the **Initialization** phase, gradle will look for **settings.gradle** file to determine the projects involved
+>in this build. After this it creates a *Project* instance which is an in-memory view of the projects it will build and
+>starts the second pase **Configuration** which will populate the project instance.
+>
+>The **Configuration** phase is responible for populating the Project instance with configuration information: register
+>the tasks involved with each project, what are the plugins needed to be applied and the tasks they provide.
+>Build the list of properties that will be available for property place-holder replacement, run the buildscritp{} block, etc.
+>
+>The result of the **Configuration** phase is of course a configuration object (instance of Project). Gradle can now take
+>this cofiguration, and with the task name supplied as parameter, determine the task graph: a graph of task and the order
+>in which they should be executed, and execute them.
+
+Bellow, you can see the graphs created for a project that uses the *java-plugin*
+![Gradle task graphs for java-plugin](http://www.gradle.org/docs/current/userguide/img/javaPluginTasks.png)
+
+In order to visualize the differences between configuration and execution phase you can run:
+~~~
+  gradle -q viewLifecycle
+~~~
+
+And you will get a sample output that looks like this:
+~~~
+This is executed during 'configuration' phase
+This is still 'configuration' phase, inside a Task
+This is the end of the 'configuration' phase
+----------
+This is 'execution' phase, second doFirst action
+This is 'execution' phase, first doFirst action
+This is 'execution' phase, first doLast action
+This is 'execution' phase, second doLast actio
+~~~
+
+
+
