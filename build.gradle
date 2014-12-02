@@ -30,3 +30,46 @@ dependencies {
     testCompile "junit:junit:4.11"
 }
 */
+println "This is executed during 'configuration' phase "
+
+task viewLifecycle {
+  println "This is still 'configuration' phase, inside a Task"
+
+  doFirst {
+    println "This is 'execution' phase, first doFirst action"
+  }
+  
+  doLast {
+    println "This is 'execution' phase, first doLast action"
+  }
+
+  doFirst {
+    println "This is 'execution' phase, second doFirst action"
+  }
+
+  doLast {
+    println "This is 'execution' phase, second doLast action"
+  }
+}
+
+println "This is the end of the 'configuration' phase"
+println '-' * 10
+
+task buildWorld(description: "Build a new world - awesome God-like powers!") {
+  ext.worldName = 'Planeta Moldova'
+
+  doLast{
+    println "Building world ${worldName}!"
+  }
+}
+
+task hello(dependsOn: buildWorld) {
+  description = "Greets the new world!"  
+  doLast {
+    println "Hello world ${buildWorld.worldName}"
+  }
+}
+
+buildWorld {
+  worldName = '67P/Churymov–Gerasimenko'
+}

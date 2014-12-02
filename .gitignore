@@ -1,4 +1,8 @@
 .gradle
 build
 
+<<<<<<< HEAD
 /.nb-gradle/private/
+=======
+.nb-gradle
+>>>>>>> 04-java-plugin
