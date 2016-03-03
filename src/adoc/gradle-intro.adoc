@@ -6,32 +6,87 @@
 :data-uri:
 :icons:
 
+== Gradle - build automation tool
 
-How To Use It
--------------
-
-* prepare +.txt+ file
-* prepare images
-* convert it to html:
-
+[quote, Gradle motto, gradle website]
 ----
-asciidoc --backend slidy presentation.txt
+Realize Build Happiness
 ----
 
-* enojoy
-
-(hint: press SPACE BAR or click to go to the next slide)
-
-
-Various Stuff
--------------
-
-.Yes, you can use images
-image:sample_image.png[]
-
-You can also do some kind of "animation":
+== Agenda
 
 [role="incremental"]
-- not very very cool
-- but better than
-- nothing, isn't it?
+* short intro with history of Java build tools
+* install gradle on your machine
+* run tasks
+* gradle build phases
+* create your first project
+* write tasks
+
+== Short intro - why Gradle?
+
+Because gradle is *awesome* :).
+
+== Let's go
+
+Here you have to do stuff.
+
+== Install Gradle
+
+Simplest way to use Gradle is by using the *gradle-wrapper*.
+
+Gradle wrapper is a shell script that downloads Gradle for you.
+----
+  git clone git@github.com:ieugen/gradle-intro.git
+  ./gradlew
+  ./gradlew tasks
+----
+NOTE: For faster Gradle build you might wish to enable *gradle build daemon*.
+
+== Running tasks
+
+Most of the time you will run tasks.
+.Simple tasks
+----
+  ./gradlew tasks
+  ./gradlew projects
+  ./gradlew tasks --info
+  ./gradlew :tasks
+  ./gradlew -q :tasks
+  ./gradlew -b exercises/001-hello-world.gradle -q hello
+----
+
+NOTE: Examine output with and without -q, --info --debug .
+
+== Gradle build phases
+
+.There are 3 build phases
+Initialization:: determines which projects are going to take part in the build
+Configuration:: Project objects are configured (task configuration block are executed)
+Execution:: Gradle determines the subset of the tasks, created and configured during the configuration phase, to be executed.
+
+NOTE: Because the Tasks to run are determined dynamic, Gradle is very flexible.
+
+== Create your first project
+
+----
+  mkdir sandbox && cd sandbox
+  ../gradlew init --type basic
+  ./gradlew tasks
+----
+
+NOTE: You don't need gradle to do that, but it is good to use is since you get the gradle wrapper.
+
+== Write tasks
+
+See exercises.
+
+== Questions ?
+
+Thank you for you time.
+
+== References
+
+* http://gradle.org/
+* https://docs.gradle.org/current/userguide/userguide.html
+* https://plugins.gradle.org/

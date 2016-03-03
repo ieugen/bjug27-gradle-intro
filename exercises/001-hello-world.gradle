@@ -1,0 +1,29 @@
+
+// Tasks are easy to define
+task hello {
+  println 'Hello world'
+}
+
+// And you can do that in multiple ways, which is confusing at first
+task hello2
+
+hello2 {
+    println 'Hello world again'
+}
+
+task taskWithActions
+
+// You can add actions to tasks using two methods. They work the same.
+taskWithActions {
+  doFirst {
+    println 'Action: Show me first'
+  }
+  doLast {
+    println 'Action: Show me last 1'
+  }
+}
+
+// shorthand to doLast
+taskWithActions << {
+  println 'Action: Show me last 2'
+}

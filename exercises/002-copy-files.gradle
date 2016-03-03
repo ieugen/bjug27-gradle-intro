@@ -1,0 +1,13 @@
+// let's do some usdefull stuff
+
+task copyExercises(type: Copy){
+  from "../exercises"
+  into "$project.buildDir/exercises"
+
+  // exclude ".gradle"
+  // exclude "build"
+}
+
+// task clean {
+//   delete "$project.buildDir"
+// }
