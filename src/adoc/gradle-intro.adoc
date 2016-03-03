@@ -1,0 +1,37 @@
+= Gradle Intro
+:author:    Ioan Eugen Stan <eu@ieugen.ro>
+:copyright: Ioan Eugen Stan
+:backend:   slidy
+:max-width: 45em
+:data-uri:
+:icons:
+
+
+How To Use It
+-------------
+
+* prepare +.txt+ file
+* prepare images
+* convert it to html:
+
+----
+asciidoc --backend slidy presentation.txt
+----
+
+* enojoy
+
+(hint: press SPACE BAR or click to go to the next slide)
+
+
+Various Stuff
+-------------
+
+.Yes, you can use images
+image:sample_image.png[]
+
+You can also do some kind of "animation":
+
+[role="incremental"]
+- not very very cool
+- but better than
+- nothing, isn't it?
