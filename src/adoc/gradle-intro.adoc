@@ -27,6 +27,8 @@ Realize Build Happiness
 
 Because gradle is *awesome* :).
 
+NOTE: Quick show-of of how I use gradle.
+
 == Let's go
 
 Here you have to do stuff.

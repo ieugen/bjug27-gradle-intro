@@ -1,0 +1,26 @@
+plugins {
+  id 'org.ajoberstar.github-pages' version '1.4.2'
+}
+
+githubPages {
+  repoUri = 'git@github.com:ieugen/gradle-intro.git'
+  pages {
+    from 'build/output'
+  }
+}
+
+task asciidocSlidy(type: Exec){
+  inputs.files files('../src/adoc/gradle-intro.adoc')
+  outputs.file 'buidl/index.html'
+
+  mkdir("build/output")
+
+  workingDir './'
+  commandLine 'asciidoc',  '--backend', 'slidy','-o', 'build/output/index.html','../src/adoc/gradle-intro.adoc'
+}
+
+publishGhPages.dependsOn 'asciidocSlidy'
+
+task clean(type: Delete) {
+  delete "build/output"
+}
